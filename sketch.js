@@ -56,7 +56,7 @@ const wLr = 0.00001;
 const bLr = 0.1;
 
 function draw() {
-  background(50);
+  background(30);
 
   if (mouseIsPressed) {
     dataset.push(new DataPoint(mouseX, mouseY, 10));
