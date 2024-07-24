@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BGD - Kent Jordan</title>
+    <title>Linear Regression - Kent Jordan</title>
     <script src="https://unpkg.com/mathjs/lib/browser/math.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
@@ -12,9 +12,40 @@
 
 <body class="flex justify-center item-center h-screen">
     <div class="h-full flex flex-col justify-center items-center">
-        <h1 class="text-2xl font-bold">Batch Gradient Descent</h1>
-        <main class="my-4"></main>
-        <h1 class="text-base">Made by Kent Jordan 💖</h1>
+        <div class="flex">
+            <div class="flex items-center mr-1">
+                <div class="h-[300px] flex flex-col justify-center gap-y-6 text-end text-xs">
+                    <p>210</p>
+                    <p>180</p>
+                    <p>150</p>
+                    <p>120</p>
+                    <p>90</p>
+                    <p>60</p>
+                    <p>30</p>
+                </div>
+            </div>
+            <div class="flex-col flex items-center">
+                <div class="mb-4 flex flex-col items-center justify-center">
+                    <h1 class="text-xl font-bold">Linear Regression</h1>
+                    <p class="text-sm">with Gradient Descent Algorithm</p>
+                </div>
+                <main class="w-full rounded-xl"></main>
+                <div class="flex flex-col items-center mt-2">
+                    <div class="flex gap-x-6 text-xs">
+                        <p class="font-bold">x-axis</p>
+                        <p>30</p>
+                        <p>60</p>
+                        <p>90</p>
+                        <p>120</p>
+                        <p>150</p>
+                        <p>180</p>
+                        <p>210</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="text-sm mt-8">Made by <a href="https://kentjordan.xyz" class="text-sky-500">Kent Jordan</a> with 💖
+        </h1>
     </div>
 </body>
 

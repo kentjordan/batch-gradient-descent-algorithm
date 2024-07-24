@@ -1,3 +1,10 @@
+const canvasHeight = 300;
+const canvasWidth = 300;
+
+function setup() {
+  createCanvas(canvasWidth, canvasHeight);
+}
+
 const dataset = [];
 
 const drawLine = (x1, y1, x2, y2) => {
@@ -20,7 +27,7 @@ const deriveJ = (w, b) => {
 
   for (let i = 0; i < m; i++) {
     const xi = dataset[i].x;
-    const yi = dataset[i].y;
+    const yi = canvasHeight - dataset[i].y;
 
     sum += (fHat(w, xi, b) - yi) * xi;
   }
@@ -34,7 +41,7 @@ const deriveB = (w, b) => {
 
   for (let i = 0; i < m; i++) {
     const xi = dataset[i].x;
-    const yi = dataset[i].y;
+    const yi = canvasHeight - dataset[i].y;
 
     sum += fHat(w, xi, b) - yi;
   }
@@ -42,15 +49,10 @@ const deriveB = (w, b) => {
   return sum / m;
 };
 
-function setup() {
-  createCanvas(700, windowHeight / 2);
-  if (windowWidth <= 700) {
-    resizeCanvas(windowWidth, windowHeight / 2);
-  }
-}
+let w = 1;
+let b = 0;
 
-let w = 3;
-let b = 3;
+const lr = 0.00001;
 
 function draw() {
   background(50);
@@ -62,8 +64,8 @@ function draw() {
   drawDataset();
 
   if (dataset.length >= 10) {
-    tmp_w = w - 0.000001 * deriveJ(w, b);
-    tmp_b = b - 0.05 * deriveB(w, b);
+    tmp_w = w - lr * deriveJ(w, b);
+    tmp_b = b - lr * deriveB(w, b);
     w = tmp_w;
     b = tmp_b;
 
@@ -71,37 +73,22 @@ function draw() {
     const maxX = Math.max(...dataset.map((dp) => dp.x));
 
     stroke(255);
-    line(minX, fHat(w, minX, b), maxX, fHat(w, maxX, b));
+    line(
+      minX,
+      canvasHeight - fHat(w, minX, b),
+      maxX,
+      canvasHeight - fHat(w, maxX, b)
+    );
   }
-
-  // Render Coodinate's numbers
-  for (let i = 1; i <= 16; i++) {
-    fill(255);
-    noStroke();
-    textSize(12);
-    // x
-    text(i * 50, i * 50, 12);
-    // y
-    text(i * 50, 2, i * 50);
-  }
-
-  //   Render x and y label
-
-  fill(255);
-  noStroke();
-  textSize(24);
-  textSize(BOLD);
-  text("x", width / 2, 40);
-  text("y", 40, height / 2);
 
   //   Render live calculation of the model ŷ
   fill(255);
   noStroke();
   textSize(16);
   text(
-    `ŷ = ${w.toPrecision(4)}x + ${b.toPrecision(4)}`,
-    width / 2 - width / 12,
-    height - 8
+    `ŷ = ${w.toPrecision(2)}x + ${b.toPrecision(3)}`,
+    canvasWidth / 2.85,
+    canvasHeight - 20
   );
 
   fill(255);
