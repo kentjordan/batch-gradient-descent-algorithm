@@ -52,7 +52,8 @@ const deriveB = (w, b) => {
 let w = 1;
 let b = 0;
 
-const lr = 0.00001;
+const wLr = 0.00001;
+const bLr = 0.1;
 
 function draw() {
   background(50);
@@ -64,8 +65,8 @@ function draw() {
   drawDataset();
 
   if (dataset.length >= 10) {
-    tmp_w = w - lr * deriveJ(w, b);
-    tmp_b = b - lr * deriveB(w, b);
+    tmp_w = w - wLr * deriveJ(w, b);
+    tmp_b = b - bLr * deriveB(w, b);
     w = tmp_w;
     b = tmp_b;
 
